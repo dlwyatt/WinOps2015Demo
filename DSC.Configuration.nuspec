@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DSC.Configuration</id>
+    <title>Dsc Configuration Artifacts</title>
+    <version>$version$</version>
+    <authors>DevOpsGuys</authors>
+    <owners>DevOpsGuys</owners>
+    <licenseUrl>http://www.devopsguys.com/</licenseUrl>
+    <projectUrl>http://www.devopsguys.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Demo DSC Configuration Artifacts</description>
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+   <file src="DemoConfiguration\**" target="DemoConfiguration" />
+   <file src="Modules\**" target="Modules" />
+   <file src="Deploy.ps1" target="\" />
+  </files>
+</package>

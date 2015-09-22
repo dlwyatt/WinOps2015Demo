@@ -1,0 +1,21 @@
+[ClassVersion("2.0"), FriendlyName("cOctopusDeployTentacleConfigFile")]
+class DOG_OctopusDeployTentacleConfigFile : OMI_BaseResource
+{
+    [key] string HomeDirectory;
+    [key] string TentacleName;
+    [write,ValueMap{"Present", "Absent"},Values{"Present", "Absent"}] string Ensure;
+    [write] string ServerName;
+    [write] string ServerThumbprint;
+    [write] string DeploymentDirectory;
+    [write] uint16 Port;
+    [write,ValueMap{"Listen", "Poll"},Values{"Listen", "Poll"}] string CommunicationMode;
+    [write,EmbeddedInstance("MSFT_Credential")] string RegistrationCredential;
+    [write] string Role;
+    [write] string Environment;
+    [write] uint16 ServerPort;
+    [read] string Squid;
+    [read] string ServerSquid;
+    [read] string CertificateThumbprint;
+};
+
+

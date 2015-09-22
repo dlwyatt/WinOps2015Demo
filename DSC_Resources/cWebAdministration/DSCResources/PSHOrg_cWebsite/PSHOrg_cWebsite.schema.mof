@@ -1,0 +1,25 @@
+[ClassVersion("1.0.0")]
+Class PSHOrg_cWebBindingInformation
+{
+    [write]UInt16 Port;
+    [Write,ValueMap{"http", "https"},Values{"http", "https"}] string Protocol;
+    [write]String IPAddress;
+    [write]String HostName;
+    [write]String CertificateThumbprint;
+    [write,ValueMap{"Personal", "WebHosting"},Values{"Personal", "WebHosting"}] string CertificateStoreName;
+};
+
+
+[ClassVersion("2.0.1"), FriendlyName("cWebsite")]
+class PSHOrg_cWebsite : OMI_BaseResource
+{
+  [Key] string Name;
+  [required] string PhysicalPath;
+  [write,ValueMap{"Present", "Absent"},Values{"Present", "Absent"}] string Ensure;
+  [write,ValueMap{"Started","Stopped"},Values{"Started", "Stopped"}] string State;
+  [write, EmbeddedInstance("PSHOrg_cWebBindingInformation"), Description("Hashtable containing binding information (Port, Protocol, IPAddress, HostName, CertificateThumbPrint, CertificateStore)")] string BindingInfo[];
+  [write] string ApplicationPool;
+  [read] string Id;
+};
+
+
