@@ -1,1 +1,7 @@
 # WinOps2015Demo
+
+Demo code from the workshop I gave at WinOps in 2015.  Invoke-Build.ps1 is the code executed by TeamCity; if all is successful in that script, TeamCity creates a nuget package from the nuspec file in the repo, and creates an Octopus Deploy release for that package.
+
+Deploy.ps1 is executed by the Octopus Deploy Tentacle after it extracts the contents of the nuget package.  This is responsible for installing the PowerShell modules on a system, compiling the DSC configuration, and running it with the Start-DscConfiguration cmdlet.  It accepts a single parameter called $OctopusParameters, which is a variable automatically available to PowerShell scripts executed by the Tentacle.  (In this demo, I'm only using the key 'Octopus.Machine.Roles', which is a comma-separated string containing the roles that are assigned to a particular endpoint in Octopus.)
+
+As I mentioned in the talk, this demo code is taken directly from the pipeline we've set up for a couple of our clients, and it installs modules into `$pshome\Modules` instead of `$env:ProgramFiles\WindowsPowerShell\Modules`.  This is to avoid a bug where the LCM will occasionally stop looking in the Program Files location for modules (so the configuration will fail to apply properly).  A reboot usually clears up that condition, but I preferred the workaround of just installing the modules in the c:\windows folder, which so far has always worked.
